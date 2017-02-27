@@ -14,6 +14,11 @@ namespace Week8Notes
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            // Enable JSON
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(
+                new System.Net.Http.Headers.MediaTypeHeaderValue("text/html")
+                );            
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
