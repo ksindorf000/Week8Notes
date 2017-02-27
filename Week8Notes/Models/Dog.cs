@@ -16,7 +16,7 @@ namespace Week8Notes.Models
 
     public class DogContext : DbContext
     {
-        DbSet<Dog> Dogs { get; set; }
+       public DbSet<Dog> Dogs { get; set; }
     }
 
 }
