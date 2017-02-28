@@ -21,20 +21,20 @@ namespace Day2Authentification.Controllers
         // GET: api/Transaction
         public IQueryable<Transaction> GetTransactions()
         {
-            /*******
-             * To do: filter by current auth user
-             * *****/
-            return db.Transactions;
+            string userId = User.Identity.GetUserId();
+            return db.Transactions
+                .Where(t => t.UserId == userId);
         }
 
         // GET: api/Transaction/5
         [ResponseType(typeof(Transaction))]
         public IHttpActionResult GetTransaction(int id)
         {
-            /*******
-             * To do: filter by current auth user
-             * *****/
-            Transaction transaction = db.Transactions.Find(id);
+            string userId = User.Identity.GetUserId();
+            Transaction transaction = db.Transactions
+                .Where(t => t.UserId == userId && t.Id == id)
+                .FirstOrDefault();
+
             if (transaction == null)
             {
                 return NotFound();
