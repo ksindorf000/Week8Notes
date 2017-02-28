@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using System.Data.Entity;
 
 namespace Day2Authentification.Models
 {
@@ -19,7 +20,8 @@ namespace Day2Authentification.Models
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
+    {      
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
@@ -29,5 +31,8 @@ namespace Day2Authentification.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Transaction> Transactions { get; set; }
+
     }
 }
